@@ -99,7 +99,7 @@ export default {
       this.selectedDate = ''
       this.selectedTime = ''
 
-      // reload page
+      window.location.reload()
     }
   }
 }
