@@ -1,39 +1,4 @@
-<template>
-  <section class="admin-view">
-    <h1>Admin Panel</h1>
-
-    <h2>Appointments</h2>
-    <p v-if="appointments.length === 0">
-      No appointments available.
-    </p>
-    <div v-else>
-      <AppointmentItem
-        v-for="appt in appointments"
-        :key="appt.id"
-        :appointment="appt"
-        @onDelete="removeAppointment"
-      />
-    </div>
-
-    <hr />
-
-    <h2>Questions</h2>
-    <p v-if="questions.length === 0">
-      No questions available.
-    </p>
-    <div v-else>
-      <QuestionItemComponent
-        v-for="question in questions"
-        :key="question.id"
-        :question="question"
-        @onDelete="removeQuestion"
-      />
-    </div>
-  </section>
-</template>
-
 <script>
-import { computed } from 'vue'
 import { useAppointmentsStore } from '@/stores/appointments.ts'
 import { useQuestionsStore } from '@/stores/questions.ts'
 import AppointmentItem from '@/components/AppointmentItem.vue'
@@ -71,6 +36,40 @@ export default {
   }
 }
 </script>
+
+<template>
+  <section class="admin-view">
+    <h1>Admin Panel</h1>
+
+    <h2>Appointments</h2>
+    <p v-if="appointments.length === 0">
+      No appointments available.
+    </p>
+    <div v-else>
+      <AppointmentItem
+        v-for="appt in appointments"
+        :key="appt.id"
+        :appointment="appt"
+        @onDelete="removeAppointment"
+      />
+    </div>
+
+    <hr />
+
+    <h2>Questions</h2>
+    <p v-if="questions.length === 0">
+      No questions available.
+    </p>
+    <div v-else>
+      <QuestionItemComponent
+        v-for="question in questions"
+        :key="question.id"
+        :question="question"
+        @onDelete="removeQuestion"
+      />
+    </div>
+  </section>
+</template>
 
 <style scoped>
 .admin-view {

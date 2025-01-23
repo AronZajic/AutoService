@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 import { VSheet, VSelect } from 'vuetify/components'
 
 import { useDate } from 'vuetify'
@@ -33,7 +33,7 @@ export default {
     })
   },
   methods: {
-    getEvents({ start, end }) {
+    getEvents() {
       //const events = []
 
       /*const min = start

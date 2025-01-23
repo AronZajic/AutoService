@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import TimePicker from '@/components/AppointmentForm.vue';
-import Calendar from '../components/Calendar.vue'
+import TimePicker from '../components/AppointmentForm.vue';
+import Calendar from '../components/CalendarComponent.vue'
 </script>
 
 <template>

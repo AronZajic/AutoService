@@ -1,17 +1,4 @@
-<template>
-  <article class="appointment-item">
-    <header>
-      <strong>Email:</strong> {{ appointment.email }}
-    </header>
-    <p><strong>Message:</strong> {{ appointment.message }}</p>
-
-    <p><strong>When:</strong> {{ formattedDateTime }}</p>
-
-    <button @click="emitDelete">Delete</button>
-  </article>
-</template>
-
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue'
 import { defineProps, defineEmits } from 'vue'
 
@@ -53,3 +40,16 @@ button:hover {
   background-color: #c62828;
 }
 </style>
+
+<template>
+  <article class="appointment-item">
+    <header>
+      <strong>Email:</strong> {{ appointment.email }}
+    </header>
+    <p><strong>Message:</strong> {{ appointment.message }}</p>
+
+    <p><strong>When:</strong> {{ formattedDateTime }}</p>
+
+    <button @click="emitDelete">Delete</button>
+  </article>
+</template>

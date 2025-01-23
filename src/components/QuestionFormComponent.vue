@@ -26,7 +26,7 @@
   </form>
 </template>
 
-<script>
+<script lang="ts">
 import { useQuestionsStore } from '@/stores/questions'
 
 export default {

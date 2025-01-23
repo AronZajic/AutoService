@@ -40,7 +40,7 @@
   </form>
 </template>
 
-<script>
+<script lang="ts">
 import { useAppointmentsStore } from '@/stores/appointments'
 
 export default {
