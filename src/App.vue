@@ -7,10 +7,16 @@ import HelloWorld from './components/HelloWorld.vue'
   <header>
     <div>
       <nav>
-        <!--
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        -->
+        <ul>
+          <li>
+            <strong><RouterLink to="/">Auto Service</RouterLink></strong>
+          </li>
+        </ul>
+        <ul>
+          <li><RouterLink to="/appointments">Appointments</RouterLink></li>
+          <li><RouterLink to="/contact">Contact</RouterLink></li>
+          <li><RouterLink to="/about">About</RouterLink></li>
+        </ul>
       </nav>
     </div>
   </header>
@@ -18,6 +24,4 @@ import HelloWorld from './components/HelloWorld.vue'
   <RouterView />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
