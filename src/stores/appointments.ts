@@ -18,6 +18,9 @@ export const useAppointmentsStore = defineStore({
         message,
         timestamp
       })
+
+      this.appointments.sort((a, b) => a.timestamp - b.timestamp)
+
       this.saveLocalStorage()
     },
     removeAppointment(id) {
