@@ -1,13 +1,11 @@
 <template>
   <section class="admin-view">
-    <h1>Admin Panel: Appointments</h1>
+    <h1>Admin Panel</h1>
 
-    <!-- If no appointments exist, show a message -->
+    <h2>Appointments</h2>
     <p v-if="appointments.length === 0">
       No appointments available.
     </p>
-
-    <!-- Otherwise, list them -->
     <div v-else>
       <AppointmentItem
         v-for="appt in appointments"
@@ -16,26 +14,61 @@
         @onDelete="removeAppointment"
       />
     </div>
+
+    <hr />
+
+    <h2>Questions</h2>
+    <p v-if="questions.length === 0">
+      No questions available.
+    </p>
+    <div v-else>
+      <QuestionItemComponent
+        v-for="question in questions"
+        :key="question.id"
+        :question="question"
+        @onDelete="removeQuestion"
+      />
+    </div>
   </section>
 </template>
 
-<script setup>
+<script>
 import { computed } from 'vue'
-import { useAppointmentsStore } from '@/stores/appointments.ts'  // Adjust path as needed
-import AppointmentItem from '@/components/AppointmentItem.vue'   // Adjust path as needed
+import { useAppointmentsStore } from '@/stores/appointments.ts'
+import { useQuestionsStore } from '@/stores/questions.ts'
+import AppointmentItem from '@/components/AppointmentItem.vue'
+import QuestionItemComponent from '@/components/QuestionItemComponent.vue';
 
-// Access the Pinia store
-const appointmentsStore = useAppointmentsStore()
-
-// A computed property that returns the current list of appointments
-const appointments = computed(() => appointmentsStore.appointments)
-
-/**
- * Handle delete event from a child component
- * @param {number} id - ID of the appointment to remove
- */
-function removeAppointment(id) {
-  appointmentsStore.removeAppointment(id)
+export default {
+  name: 'AdminView',
+  components: {
+    AppointmentItem,
+    QuestionItemComponent
+  },
+  data() {
+    return {
+    }
+  },
+  computed: {
+    appointments() {
+      const store = useAppointmentsStore()
+      return store.appointments
+    },
+    questions() {
+      const store = useQuestionsStore()
+      return store.questions
+    }
+  },
+  methods: {
+    removeAppointment(id) {
+      const store = useAppointmentsStore()
+      store.removeAppointment(id)
+    },
+    removeQuestion(id) {
+      const store = useQuestionsStore()
+      store.removeQuestion(id)
+    }
+  }
 }
 </script>
 
@@ -44,5 +77,9 @@ function removeAppointment(id) {
   max-width: 600px;
   margin: 2rem auto;
   padding: 1rem;
+}
+
+h2 {
+  margin-top: 2rem;
 }
 </style>
