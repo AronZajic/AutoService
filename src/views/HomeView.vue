@@ -1,17 +1,14 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
 </script>
 
 <template>
   <main>
-    <!-- Hero section -->
     <article class="hero">
       <h1>The Reliable Auto Service</h1>
       <p>Your trusted partner for all automotive needs.</p>
       <a href="#services" class="primary-cta" role="button">Explore Our Services</a>
     </article>
 
-    <!-- Services section -->
     <section id="services" class="services-section container">
       <h2>Our Services</h2>
       <ul class="grid">
