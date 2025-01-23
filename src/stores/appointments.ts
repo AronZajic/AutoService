@@ -16,7 +16,8 @@ export const useAppointmentsStore = defineStore({
         id,
         email,
         message,
-        timestamp
+        timestamp,
+        completed: false
       })
 
       this.appointments.sort((a, b) => a.timestamp - b.timestamp)
@@ -25,6 +26,13 @@ export const useAppointmentsStore = defineStore({
     },
     removeAppointment(id) {
       this.appointments = this.appointments.filter(appt => appt.id !== id)
+      this.saveLocalStorage()
+    },
+    toggleCompleted(id) {
+      const appt = this.appointments.find(a => a.id === id)
+      if (!appt) return
+
+      appt.completed = !appt.completed
       this.saveLocalStorage()
     },
     saveLocalStorage() {

@@ -1,42 +1,3 @@
-<script>
-import { useAppointmentsStore } from '@/stores/appointments.ts'
-import { useQuestionsStore } from '@/stores/questions.ts'
-import AppointmentItem from '@/components/AppointmentItem.vue'
-import QuestionItemComponent from '@/components/QuestionItemComponent.vue';
-
-export default {
-  name: 'AdminView',
-  components: {
-    AppointmentItem,
-    QuestionItemComponent
-  },
-  data() {
-    return {
-    }
-  },
-  computed: {
-    appointments() {
-      const store = useAppointmentsStore()
-      return store.appointments
-    },
-    questions() {
-      const store = useQuestionsStore()
-      return store.questions
-    }
-  },
-  methods: {
-    removeAppointment(id) {
-      const store = useAppointmentsStore()
-      store.removeAppointment(id)
-    },
-    removeQuestion(id) {
-      const store = useQuestionsStore()
-      store.removeQuestion(id)
-    }
-  }
-}
-</script>
-
 <template>
   <section class="admin-view">
     <h1>Admin Panel</h1>
@@ -51,6 +12,7 @@ export default {
         :key="appt.id"
         :appointment="appt"
         @onDelete="removeAppointment"
+        @onToggleComplete="toggleComplete"
       />
     </div>
 
@@ -70,6 +32,47 @@ export default {
     </div>
   </section>
 </template>
+
+<script lang="ts">
+import { defineComponent, computed } from 'vue'
+import { useAppointmentsStore } from '@/stores/appointments.ts'
+import { useQuestionsStore } from '@/stores/questions.ts'
+import AppointmentItem from '@/components/AppointmentItem.vue'
+import QuestionItemComponent from '@/components/QuestionItemComponent.vue'
+
+export default defineComponent({
+  name: 'AdminView',
+  components: {
+    AppointmentItem,
+    QuestionItemComponent
+  },
+  setup() {
+    const appointmentsStore = useAppointmentsStore()
+    const questionsStore = useQuestionsStore()
+
+    const appointments = computed(() => appointmentsStore.appointments)
+    const questions = computed(() => questionsStore.questions)
+
+    function removeAppointment(id: number) {
+      appointmentsStore.removeAppointment(id)
+    }
+    function toggleComplete(id: number) {
+      appointmentsStore.toggleCompleted(id)
+    }
+    function removeQuestion(id: number) {
+      questionsStore.removeQuestion(id)
+    }
+
+    return {
+      appointments,
+      questions,
+      removeAppointment,
+      removeQuestion,
+      toggleComplete
+    }
+  }
+})
+</script>
 
 <style scoped>
 .admin-view {
